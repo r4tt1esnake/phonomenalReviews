@@ -39,8 +39,8 @@ int main() {
 	}
 
 	for(int i = 0; i < allList.size(); i++) {
-		for(int j = 0; j < allList.at(i).size(); i++) {
-			std::cout << allList.at(i).at(j);
+		for(int j = 0; j < allList[i].size(); j++) {
+			std::cout << allList[i][j] << '\n';
 		}
 	}
 
@@ -50,10 +50,20 @@ int main() {
 
 void inputData() {
 
-	file.open("s3.1.in");
+	file.open("s3.2.in");
 
 	file >> num_all;
 	file >> num_pho;
+
+	/*
+		Taking in the list of pho restaurants.
+	*/
+
+	phoList.resize(num_pho);
+
+	for(int i = 0; i < num_pho; i++) {
+	  file >> phoList.at(i);
+	}
 
 	/*
 		Taking in the list of all restaurants.
@@ -65,17 +75,9 @@ void inputData() {
 
 	for(int i = 0; i < num_all; i++) {
 		file >> allList[0][i];
-		file >> allList[1][i];
 	}
-
-	/*
-		Taking in the list of pho restaurants.
-	*/
-
-	phoList.resize(num_pho);
-
-	for(int i = 0; i < num_pho; i++) {
-	  file >> phoList.at(i);
+	for(int i = 0; i < num_all; i++) {
+		file >> allList[1][i];
 	}
 
 }
@@ -112,14 +114,14 @@ void populateNodeList() {
 			Looking for elements in the same row as the number of our node. 
 		*/
 
-		for(int i = 0; i < num_all; i++) {
+		for(int j = 0; j < num_all; j++) {
 
-			if(allList[0][i] == temp.number) {
-				temp.children.push_back(allList[1][i]);
+			if(allList[0][j] == temp.number) {
+				temp.children.push_back(allList[1][j]);
 			}
 
-			if(allList[1][i] == temp.number) {
-				temp.children.push_back(allList[0][i]);
+			if(allList[1][j] == temp.number) {
+				temp.children.push_back(allList[0][j]);
 			}
 
 		}
