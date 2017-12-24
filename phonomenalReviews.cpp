@@ -14,30 +14,47 @@ int num_all;
 int num_pho;
 std::vector<int> phoList;
 std::vector<std::vector<int> > allList;
+std::ifstream file;
 
+void inputData();
 bool checkPho(int num);
+void populateNodeList();
 int traversePath();
 
 int main() {
 
-	std::ifstream file;
-	file.open("c.in");
+	/***********************
+		THE MAIN FUNCTION
+	 ***********************/
 
-	file >> num_all; 
+	inputData();
+	populateNodeList();
+	//std::cout << traversePath();
+
+	std::cout << num_all << "\n";
+	std::cout << num_pho << "\n";
+
+	for(int i = 0; i < phoList.size(); i++) {
+		std::cout << phoList.at(i) << '\n';
+	}
+
+	for(int i = 0; i < allList.size(); i++) {
+		std::cout << allList.at(i) << '\n';
+	}
+
+	return 0;
+
+}
+
+void inputData() {
+
+	file.open("s3.1.in");
+
+	file >> num_all;
 	file >> num_pho;
 
 	/*
-		Populating the list of pho restaurants.
-	*/
-
-	phoList.resize(num_pho);
-
-	for(int i = 0; i < num_pho; i++) {
-	  file >> phoList.at(i);
-	}
-
-	/*
-		Populating the list of all restaurants.
+		Taking in the list of all restaurants.
 	*/
 
 	allList.resize(2);
@@ -50,6 +67,35 @@ int main() {
 	}
 
 	/*
+		Taking in the list of pho restaurants.
+	*/
+
+	phoList.resize(num_pho);
+
+	for(int i = 0; i < num_pho; i++) {
+	  file >> phoList.at(i);
+	}
+
+}
+
+bool checkPho(int num) {
+
+	/*
+		Functions as name implies.
+	*/
+
+	for(int i = 0; i < num_pho; i++) {
+		if(num == phoList.at(i)) {
+			return true;
+		}
+	}
+	return false;
+
+}
+
+void populateNodeList() {
+
+	/*
 		Populating the list of all nodes.
 	*/
 
@@ -57,6 +103,7 @@ int main() {
 
 	for(int i = 0; i < num_all; i++) {
 		node temp;
+		temp.number = i;
 		temp.isPho = checkPho(temp.number);
 
 		/* 
@@ -76,27 +123,13 @@ int main() {
 		}
 	}
 
-	/* 
-		Trying to actually implement the path...
-	*/
-
-	std::cout << traversePath();
-
-	return 0;
-
 }
 
-bool checkPho(int num) {
+int traversePath() {
 
-	/*
-		Functions as name implies.
-	*/
+	int currNode;
+	int count = 0;
 
-	for(int i = 0; i < num_pho; i++) {
-		if(num == phoList.at(i)) {
-			return true;
-		}
-	}
-	return false;
+	return count;
 
 }
