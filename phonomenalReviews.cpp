@@ -59,25 +59,25 @@ void inputData() {
 		Taking in the list of pho restaurants.
 	*/
 
-	phoList.resize(num_pho);
-
 	for(int i = 0; i < num_pho; i++) {
-	  file >> phoList.at(i);
+		int temp;
+	  	file >> temp;
+	  	phoList.push_back(temp);
 	}
 
 	/*
 		Taking in the list of all restaurants.
 	*/
 
-	allList.resize(2);
-	allList[0].resize(num_all);
-	allList[1].resize(num_all);
-
-	for(int i = 0; i < num_all; i++) {
-		file >> allList[0][i];
+	for(int i = 0; i < num_all / 2; i++) {
+		int temp;
+		file >> temp;
+		allList[0].push_back(temp);
 	}
-	for(int i = 0; i < num_all; i++) {
-		file >> allList[1][i];
+	for(int i = 0; i < num_all / 2; i++) {
+		int temp;
+		file >> temp;
+		allList[1].push_back(temp);
 	}
 
 }
