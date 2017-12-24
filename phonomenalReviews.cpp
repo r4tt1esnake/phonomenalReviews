@@ -39,7 +39,9 @@ int main() {
 	}
 
 	for(int i = 0; i < allList.size(); i++) {
-		std::cout << allList.at(i) << '\n';
+		for(int j = 0; j < allList.at(i).size(); i++) {
+			std::cout << allList.at(i).at(j);
+		}
 	}
 
 	return 0;
